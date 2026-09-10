@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Multi-Device Website Preview Tool</title>
+    <meta name="description" content="Preview any website or URL instantly across mobile, tablet, and desktop screen sizes simultaneously with our free online responsive tester tool.">
+    <meta name="keywords" content="multi-device website preview, responsive checker, website tester tool, mobile view simulator, desktop screen preview">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#030712] text-[#c9d1d9] font-sans antialiased min-h-screen p-4 md:p-6">
+    
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Header Section -->
+        <header class="text-center space-y-2">
+            <h1 class="text-2xl md:text-4xl font-extrabold text-[#3b82f6] tracking-tight">Multi-Device Website Preview Tool</h1>
+            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto">Test your website's responsiveness across mobile, tablet, and desktop viewports simultaneously.</p>
+        </header>
+
+        <!-- URL Input Controls Bar -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl max-w-3xl mx-auto flex flex-col sm:flex-row gap-3">
+            <input type="url" id="urlInput" placeholder="https://www.sahitool.com" value="https://www.sahitool.com" 
+                class="flex-1 bg-[#030712] border border-slate-700 rounded-lg px-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-blue-500 text-sm">
+            <button onclick="loadPreview()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-lg font-bold text-white transition-all cursor-pointer text-sm shadow-lg shadow-blue-600/20">Preview URL</button>
+        </div>
+
+        <!-- Devices Container Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <!-- Mobile Frame -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col items-center space-y-3 shadow-xl">
+                <div class="flex items-center justify-between w-full px-2">
+                    <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">📱 Mobile View</span>
+                    <span class="text-[11px] text-slate-500">375 x 667 px</span>
+                </div>
+                <div class="w-[320px] h-[520px] bg-black border-4 border-slate-700 rounded-3xl overflow-hidden shadow-inner relative">
+                    <iframe id="mobileFrame" src="https://www.sahitool.com" class="w-full h-full bg-white border-none"></iframe>
+                </div>
+            </div>
+
+            <!-- Tablet Frame -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col items-center space-y-3 shadow-xl">
+                <div class="flex items-center justify-between w-full px-2">
+                    <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">タブ Tablet View</span>
+                    <span class="text-[11px] text-slate-500">768 x 1024 px (Scaled)</span>
+                </div>
+                <div class="w-full max-w-[420px] h-[520px] bg-black border-4 border-slate-700 rounded-2xl overflow-hidden shadow-inner relative">
+                    <iframe id="tabletFrame" src="https://www.sahitool.com" class="w-full h-full bg-white border-none"></iframe>
+                </div>
+            </div>
+
+            <!-- Desktop Frame -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col items-center space-y-3 shadow-xl">
+                <div class="flex items-center justify-between w-full px-2">
+                    <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">💻 Desktop View</span>
+                    <span class="text-[11px] text-slate-500">Full Width</span>
+                </div>
+                <div class="w-full h-[520px] bg-black border-4 border-slate-700 rounded-xl overflow-hidden shadow-inner relative">
+                    <iframe id="desktopFrame" src="https://www.sahitool.com" class="w-full h-full bg-white border-none"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEO Content & Guide Section -->
+        <article class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6 text-slate-300">
+            <h2 class="text-xl font-bold text-blue-400">Why Use Multi-Device Preview?</h2>
+            <p class="text-sm leading-relaxed text-slate-400">Modern web design requires ensuring that your layout looks flawless on every screen size. This utility saves developers and webmasters hours of testing by rendering target URLs across mobile phones, tablets, and computers all at once.</p>
+        </article>
+
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Multi-Device Website Preview Tool",
+      "operatingSystem": "All",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Preview any website or URL instantly across mobile, tablet, and desktop screen sizes simultaneously."
+    }
+    </script>
+
+    <!-- JavaScript Tool Logic -->
+    <script>
+        function loadPreview() {
+            let url = document.getElementById("urlInput").value.trim();
+            if (!url) return;
+
+            // Auto-prepend https:// if missing
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "https://" + url;
+                document.getElementById("urlInput").value = url;
+            }
+
+            document.getElementById("mobileFrame").src = url;
+            document.getElementById("tabletFrame").src = url;
+            document.getElementById("desktopFrame").src = url;
+        }
+
+        // Trigger on Enter key
+        document.getElementById("urlInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                loadPreview();
+            }
+        });
+    </script>
+</body>
+</html>
